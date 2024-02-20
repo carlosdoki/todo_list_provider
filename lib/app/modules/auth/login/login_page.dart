@@ -34,7 +34,9 @@ class LoginPage extends StatelessWidget {
                       child: Form(
                         child: Column(
                           children: [
-                            TodoListField(label: 'E-mail'),
+                            TodoListField(
+                                label: 'E-mail',
+                                keyboardType: TextInputType.emailAddress),
                             const SizedBox(height: 20),
                             TodoListField(
                               label: 'Senha',
@@ -105,7 +107,10 @@ class LoginPage extends StatelessWidget {
                               children: [
                                 const Text('Não tem conta?'),
                                 TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .pushNamed('/register');
+                                  },
                                   child: const Text(
                                     'Cadastre-se',
                                   ),

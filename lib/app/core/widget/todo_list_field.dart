@@ -7,12 +7,18 @@ class TodoListField extends StatelessWidget {
   final IconButton? suffixIconButton;
   final bool obscureText;
   final ValueNotifier<bool> obscureTextVN;
+  final TextEditingController? controller;
+  final FormFieldValidator<String>? validator;
+  final TextInputType? keyboardType;
 
   TodoListField({
     Key? key,
     required this.label,
     this.obscureText = false,
     this.suffixIconButton,
+    this.controller,
+    this.validator,
+    this.keyboardType = TextInputType.text,
   })  : assert(obscureText == true ? suffixIconButton == null : true,
             'Obscure text and icon button cannot be used at the same time.'),
         obscureTextVN = ValueNotifier(obscureText),
@@ -24,6 +30,9 @@ class TodoListField extends StatelessWidget {
       valueListenable: obscureTextVN,
       builder: (_, obscureTextValue, child) {
         return TextFormField(
+          controller: controller,
+          validator: validator,
+          keyboardType: keyboardType,
           decoration: InputDecoration(
             labelText: label,
             labelStyle: const TextStyle(
