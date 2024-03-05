@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:validatorless/validatorless.dart';
 
+import '../../../core/notifier/default_listener_notifier.dart';
 import '../../../core/ui/theme_extensions.dart';
 import '../../../core/validators/validators.dart';
 import '../../../core/widget/todo_list_field.dart';
@@ -24,19 +25,27 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   void initState() {
     super.initState();
-    context.read<RegisterController>().addListener(() {
-      var controller = context.read<RegisterController>();
-      var success = controller.success;
-      var error = controller.error;
-      if (success) {
-        Navigator.of(context).pop();
-      } else if (error != null && error.isNotEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(error),
-          backgroundColor: Colors.red,
-        ));
-      }
-    });
+    final defaultListener = DefaultListenerNotifier(
+        changeNotifier: context.read<RegisterController>());
+    defaultListener.listener(
+        context: context,
+        successCallback: (notifier, listenerInstance) {
+          listenerInstance.dispose();
+          Navigator.of(context).pop();
+        });
+    // context.read<RegisterController>().addListener(() {
+    //   var controller = context.read<RegisterController>();
+    //   var success = controller.success;
+    //   var error = controller.error;
+    //   if (success) {
+    //     Navigator.of(context).pop();
+    //   } else if (error != null && error.isNotEmpty) {
+    //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    //       content: Text(error),
+    //       backgroundColor: Colors.red,
+    //     ));
+    //   }
+    // });
   }
 
   @override
@@ -44,7 +53,7 @@ class _RegisterPageState extends State<RegisterPage> {
     _emailController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
-    // context.read<RegisterController>().removeListener(() {});
+
     super.dispose();
   }
 
