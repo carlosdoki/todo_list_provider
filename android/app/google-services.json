@@ -29,6 +29,13 @@
             {
               "client_id": "488032934808-fifdrfbi3qegdqt4unq4i1l24aalfcfl.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "488032934808-6ai940jqhsb1q1qdhna418m0kftt0mtp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.academiadosflutter.todoListProvider"
+              }
             }
           ]
         }

@@ -4,6 +4,7 @@ import 'package:sign_in_button/sign_in_button.dart';
 import 'package:validatorless/validatorless.dart';
 
 import '../../../core/notifier/default_listener_notifier.dart';
+import '../../../core/ui/messages.dart';
 import '../../../core/widget/todo_list_field.dart';
 import '../../../core/widget/todo_list_logo.dart';
 import 'login_controller.dart';
@@ -19,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailEC = TextEditingController();
   final _passwordEC = TextEditingController();
+  final _emailFocus = FocusNode();
 
   @override
   void initState() {
@@ -26,6 +28,13 @@ class _LoginPageState extends State<LoginPage> {
     DefaultListenerNotifier(changeNotifier: context.read<LoginController>())
         .listener(
       context: context,
+      everCallback: (notifier, listenerInstance) {
+        if (notifier is LoginController) {
+          if (notifier.hasInfo) {
+            Messages.of(context).showInfo(notifier.infoMessage!);
+          }
+        }
+      },
       successCallback: (notifier, listenerInstance) {
         print('Login com sucesso');
       },
@@ -63,6 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                             TodoListField(
                               label: 'E-mail',
                               controller: _emailEC,
+                              focusNode: _emailFocus,
                               keyboardType: TextInputType.emailAddress,
                               validator: Validatorless.multiple([
                                 Validatorless.required('E-mail obrigatório'),
@@ -85,7 +95,17 @@ class _LoginPageState extends State<LoginPage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    if (_emailEC.text.isNotEmpty) {
+                                      context
+                                          .read<LoginController>()
+                                          .forgotPassword(_emailEC.text);
+                                    } else {
+                                      _emailFocus.requestFocus();
+                                      Messages.of(context).showError(
+                                          'Digite um e-mail para recuperar a senha');
+                                    }
+                                  },
                                   child: const Padding(
                                     padding: EdgeInsets.all(10.0),
                                     child: Text(

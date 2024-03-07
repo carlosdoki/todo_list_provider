@@ -59,4 +59,17 @@ class UserRepositoryImpl implements UserRepository {
       throw AuthException(message: e.message ?? 'Erro ao realizar login');
     }
   }
+
+  @override
+  Future<void> forgotPassword(String email) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e, s) {
+      print(e);
+      print(s);
+      throw AuthException(message: e.message!);
+    } catch (e) {
+      print(e);
+    }
+  }
 }
