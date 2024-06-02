@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../core/widget/todo_list_logo.dart';
+
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
 
@@ -9,7 +11,9 @@ class SplashPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(''),
       ),
-      body: Container(),
+      body: const Center(
+        child: TodoListLogo(),
+      ),
     );
   }
 }
