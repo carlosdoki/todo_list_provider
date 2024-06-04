@@ -29,4 +29,6 @@ class TodoListIcon {
       IconData(0xf06e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static IconData eyeSlash =
       const IconData(0xf070, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData filter =
+      IconData(0xf0b0, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
