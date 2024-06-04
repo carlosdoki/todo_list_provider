@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/ui/theme_extensions.dart';
 import '../../core/ui/todo_list_icons.dart';
 import 'widgets/home_drawer.dart';
+import 'widgets/home_header.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -24,7 +25,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: Color(0xFFFAFBFE),
+      backgroundColor: const Color(0xFFFAFBFE),
       drawer: HomeDrawer(),
       body: LayoutBuilder(builder: (_, constraints) {
         return SingleChildScrollView(
@@ -34,16 +35,14 @@ class HomePage extends StatelessWidget {
               minWidth: constraints.maxWidth,
             ),
             child: Container(
-              margin: EdgeInsets.symmetric(
+              margin: const EdgeInsets.symmetric(
                 horizontal: 20,
               ),
-              child: IntrinsicHeight(
+              child: const IntrinsicHeight(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Carlos',
-                    )
+                    HomeHeader(),
                   ],
                 ),
               ),
