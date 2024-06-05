@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import '../../core/ui/theme_extensions.dart';
 import '../../core/ui/todo_list_icons.dart';
 import 'widgets/home_drawer.dart';
+import 'widgets/home_filters.dart';
 import 'widgets/home_header.dart';
+import 'widgets/home_tasks.dart';
+import 'widgets/home_week_filter.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,7 +15,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: context.primaryColor),
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color(0xFFFAFBFE),
         elevation: 0,
         actions: [
           PopupMenuButton(
@@ -43,6 +46,9 @@ class HomePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     HomeHeader(),
+                    HomeFilters(),
+                    HomeWeekFilter(),
+                    HomeTasks(),
                   ],
                 ),
               ),

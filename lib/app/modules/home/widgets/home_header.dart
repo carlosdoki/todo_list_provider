@@ -12,25 +12,28 @@ class HomeHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Selector<ToDoAuthProvider, String>(
-          selector: (context, authProvider) =>
-              authProvider.user?.displayName ?? 'Não',
-          builder: (_, value, __) {
-            return Text(
-              'E ai, $value !',
-              style: context.textTheme.headlineMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-            );
-          },
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Selector<ToDoAuthProvider, String>(
+            selector: (context, authProvider) =>
+                authProvider.user?.displayName ?? 'Não',
+            builder: (_, value, __) {
+              return Text(
+                'E ai, $value !',
+                style: context.textTheme.headlineMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              );
+            },
+          ),
         ),
-        Spacer(),
-        IconButton(
-          onPressed: () {
-            context.read<ToDoAuthProvider>().logout();
-          },
-          icon: Icon(Icons.logout),
-        ),
+        // Spacer(),
+        // IconButton(
+        //   onPressed: () {
+        //     context.read<ToDoAuthProvider>().logout();
+        //   },
+        //   icon: Icon(Icons.logout),
+        // ),
       ],
     );
   }
