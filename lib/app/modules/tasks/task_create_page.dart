@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/ui/theme_extensions.dart';
 import '../../core/widget/todo_list_field.dart';
 import 'task_create_controller.dart';
+import 'widgets/calendar_button.dart';
 
 class TaskCreatePage extends StatelessWidget {
   TaskCreateController _controller;
@@ -60,6 +61,10 @@ class TaskCreatePage extends StatelessWidget {
               TodoListField(
                 label: '',
               ),
+              const SizedBox(
+                height: 20,
+              ),
+              CalendarButton(),
             ],
           ),
         ),
