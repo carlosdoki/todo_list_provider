@@ -24,7 +24,7 @@ class TasksRepositoryImpl implements TasksRepository {
       startFilter.toIso8601String(),
       endFilter.toIso8601String(),
     ]);
-    return result.map((e) {});
+    return result.map((e) => TasksModel.loadFromDB(e)).toList();
   }
 
   @override

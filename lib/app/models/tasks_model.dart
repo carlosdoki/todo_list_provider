@@ -10,4 +10,13 @@ class TasksModel {
   final String description;
   final DateTime dateTime;
   final bool finished;
+
+  factory TasksModel.loadFromDB(Map<String, dynamic> task) {
+    return TasksModel(
+      id: task['id'],
+      description: task['description'],
+      dateTime: DateTime.parse(task['dateTime']),
+      finished: task['finished'] == 1,
+    );
+  }
 }
