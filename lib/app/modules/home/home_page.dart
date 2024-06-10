@@ -1,17 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../../core/ui/theme_extensions.dart';
 import '../../core/ui/todo_list_icons.dart';
-import '../tasks/task_create_page.dart';
 import '../tasks/tasks_module.dart';
+import 'home_controller.dart';
 import 'widgets/home_drawer.dart';
 import 'widgets/home_filters.dart';
 import 'widgets/home_header.dart';
 import 'widgets/home_tasks.dart';
 import 'widgets/home_week_filter.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+  final HomeController _homeController;
+
+  HomePage({super.key, required HomeController homeController})
+      : _homeController = homeController;
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    widget._homeController.loadTotalTasks();
+  }
 
   void _goToCreateTask(BuildContext context) {
     // Navigator.of(context).pushNamed('/tasks/create');
